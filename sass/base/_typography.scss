@@ -1,0 +1,17 @@
+.wp-block-post-title a {
+	text-decoration: none;
+}
+
+[class*="has-heading-"][class*="-font-size"] {
+    line-height: var(--wp--custom--line-height--tiny);
+    font-family: var(--wp--preset--font-family--font-heading);
+    font-weight: bold;
+}
+
+.has-display-font-size {
+    line-height: var(--wp--custom--line-height--tiny);
+}
+
+.has-white-background-color {
+    color: var(--wp--preset--color--background);
+}
