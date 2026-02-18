@@ -19,3 +19,11 @@ img.img-white {
     }
 
 }
+
+.is-light img[src*="Ornament2.svg"] {
+    filter: invert(1);
+}
+
+.slick-slide .wp-block-image img {
+    border-radius: var(--wp--custom--border-radius--1);
+}

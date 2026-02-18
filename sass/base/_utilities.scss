@@ -62,3 +62,7 @@ a.stretched-link, .stretched-link > a {
 .uppercase {
     text-transform: uppercase;
 }
+
+.blur-background {
+    backdrop-filter: blur(8px);
+}

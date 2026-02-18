@@ -9,11 +9,13 @@
  * @package sumun
  */
 
+$ocultar_contacto_footer = get_field('ocultar_contacto_footer');
 ?>
 
 	<footer id="colophon" class="site-footer">
-		<?php block_template_part( 'prefooter' ); ?>
-		<?php block_template_part( 'footer' ); ?>
+		<?php if ( ! $ocultar_contacto_footer ) : ?>
+			<?php block_template_part( 'footer' ); ?>
+		<?php endif; ?>
 	</footer><!-- #colophon -->
 </div><!-- #page -->
 

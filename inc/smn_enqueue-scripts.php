@@ -9,11 +9,12 @@
 	wp_enqueue_script( 'sumun-js', get_template_directory_uri() . '/assets/js/sumun.js', array(), true );
 	wp_enqueue_script( 'smnsumun-navigation', get_template_directory_uri() . '/assets/js/navigation.js', array(), _S_VERSION, true );
 
-	if ( has_block( 'cb/carousel' ) ) {
+	// No se carga si el carrusel está en un bloque sincronizado
+	// if ( has_block( 'cb/carousel' ) ) {
         wp_enqueue_style( 'slick-css', get_template_directory_uri() . '/assets/slick/slick.min.css' );
         wp_enqueue_script( 'slick-js', get_template_directory_uri() . '/assets/slick/slick.min.js', array('jquery'), null, true );
         wp_enqueue_script( 'slick-init-js', get_template_directory_uri() . '/assets/slick/init.js', array('jquery'), null, true );
-    }
+    // }
 
 }
 add_action( 'wp_enqueue_scripts', 'smn_scripts' );

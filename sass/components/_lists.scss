@@ -94,3 +94,17 @@ ul.is-style-check-list {
 		left: 0;
 	}
 }
+
+.wp-block-term-template {
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--wp--custom--layout--gap);
+
+	.wp-block-term {
+		margin-top: 0;
+
+		> div {
+			gap: var(--wp--preset--spacing--10);
+		}
+	}
+}

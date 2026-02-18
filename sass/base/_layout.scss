@@ -41,21 +41,10 @@ body {
         z-index: 1000;
         transition: all 0.3s ease;
 
-        .wp-block-site-logo,
-        nav.wp-block-navigation {
-            background-color: rgba( 255, 255, 255, 0.2);
-            border-radius: var(--wp--custom--border-radius--05);
-            padding: var(--wp--preset--spacing--05);
-            backdrop-filter: blur(8px);
-        }
-
         .wp-block-navigation__responsive-container:not(.is-menu-open.is-menu-open) {
             background-color: transparent !important;
         }
 
-        .is-layout-flex {
-            align-items: stretch;
-        }
     }
 
     &.scrolled #masthead {
@@ -65,6 +54,7 @@ body {
 }
 
 .is-layout-constrained .wp-block-cover,
-.is-layout-constrained .wp-block-video video {
+.is-layout-constrained .wp-block-video video,
+.wp-block-group.has-background {
     border-radius: var(--wp--custom--border-radius--1)
 }
