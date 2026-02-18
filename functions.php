@@ -63,6 +63,9 @@ require get_template_directory() . '/inc/smn_analitica.php';
 // Schema
 require get_template_directory() . '/inc/smn_schema.php';
 
+// Hooks
+require get_template_directory() . '/inc/smn_hooks.php';
+
 /**
  * Implement the Custom Header feature.
  */

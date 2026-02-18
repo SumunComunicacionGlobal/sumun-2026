@@ -55,9 +55,7 @@ function cmplz_show_banner_on_click() {
 }
 add_action( 'wp_footer', 'cmplz_show_banner_on_click' );
 
-function smn_get_anchor_menu() {
-
-    if ( ! is_page() ) return false;
+function smn_get_anchor_menu_items() {
 
     $anchor_menu = get_field('anchor_menu' );
     if ( ! $anchor_menu ) return false;
@@ -65,22 +63,64 @@ function smn_get_anchor_menu() {
     $items = array_map('trim', explode(',', $anchor_menu));
     if (empty($items)) return false;
 
-    $output = '<div id="navbarNavDropdown" class="collapse navbar-collapse">';
-        $output .= '<ul class="navbar-nav ml-auto anchor-menu">';
-        foreach ($items as $item) {
-            list($id, $label) = array_map('trim', explode(':', $item, 2));
-            if ($id && $label) {
-                $id = ltrim($id, '#');
-                $output .= sprintf(
-                    '<li class="nav-item"><a class="nav-link" href="#%s">%s</a></li>',
-                    esc_attr($id),
-                    esc_html($label)
-                );
-            }
+    $output = '';
+
+    foreach ($items as $item) {
+        list($id, $label) = array_map('trim', explode(':', $item, 2));
+        if ($id && $label) {
+            $id = ltrim($id, '#');
+            $output .= sprintf(
+            '<li class="wp-block-navigation-item wp-block-navigation-link"><a class="wp-block-navigation-item__content" href="#%s"><span class="wp-block-navigation-item__label">%s</span></a></li>',
+                esc_attr($id),
+                esc_html($label)
+            );
         }
-        $output .= '</ul>';
-    $output .= '</div>';
+    }
 
     return $output;
 
+}
+
+add_filter( 'render_block_core/navigation', 'wpdocs_modify_nav_menu_for_admins', 10, 2 );
+function wpdocs_modify_nav_menu_for_admins( $block_content, $block ) {
+
+    if ( isset( $block['blockName'] ) && 'core/navigation' === $block['blockName'] ) {
+
+        $anchor_menu_items = smn_get_anchor_menu_items();
+        if ( ! $anchor_menu_items ) return $block_content;
+
+        // Remove all HTML inside <ul class="wp-block-navigation__container">...</ul>
+        // Usa una función DOM para reemplazar solo el contenido del ul principal con la clase wp-block-navigation__container
+        $dom = new DOMDocument();
+        libxml_use_internal_errors(true); // Suprime warnings por HTML5
+        $dom->loadHTML('<?xml encoding="utf-8" ?>' . $block_content);
+
+        $xpath = new DOMXPath($dom);
+        $ul_nodes = $xpath->query('//ul[contains(concat(" ", normalize-space(@class), " "), " wp-block-navigation__container ")]');
+
+        if ($ul_nodes->length > 0) {
+            $ul = $ul_nodes->item(0);
+
+            // Elimina todos los hijos actuales del ul
+            while ($ul->firstChild) {
+            $ul->removeChild($ul->firstChild);
+            }
+
+            // Crea un fragmento con los nuevos items
+            $fragment = $dom->createDocumentFragment();
+            $fragment->appendXML($anchor_menu_items);
+            $ul->appendChild($fragment);
+
+            // Guarda el HTML modificado, quitando el doctype y html/body extra
+            $body = $dom->getElementsByTagName('body')->item(0);
+            $block_content = '';
+            foreach ($body->childNodes as $child) {
+            $block_content .= $dom->saveHTML($child);
+            }
+        }
+        libxml_clear_errors();
+
+    }
+
+    return $block_content;
 }
