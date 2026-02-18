@@ -89,6 +89,8 @@ function wpdocs_modify_nav_menu_for_admins( $block_content, $block ) {
         $anchor_menu_items = smn_get_anchor_menu_items();
         if ( ! $anchor_menu_items ) return $block_content;
 
+        if ( !isset( $block['attrs']['ref'] ) || $block['attrs']['ref'] != 25834 ) return $block_content; 
+
         // Remove all HTML inside <ul class="wp-block-navigation__container">...</ul>
         // Usa una función DOM para reemplazar solo el contenido del ul principal con la clase wp-block-navigation__container
         $dom = new DOMDocument();
