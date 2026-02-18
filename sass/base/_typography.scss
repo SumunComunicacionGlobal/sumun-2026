@@ -15,3 +15,18 @@
 .has-white-background-color {
     color: var(--wp--preset--color--background);
 }
+
+.wp-block-group.is-style-pill-paragraph {
+    gap: .5em;
+
+    &.is-vertical {
+        gap: 1em;
+    }
+}
+p.is-style-pill-paragraph,
+.wp-block-group.is-style-pill-paragraph p {
+    border: 1px solid;
+    border-radius: 1000px;
+    padding: .25em var(--wp--preset--spacing--10);
+    display: inline-block;
+}

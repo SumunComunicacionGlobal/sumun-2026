@@ -58,6 +58,10 @@ wp.domReady( () => {
 			name: 'title-has-image',
 			label: 'Imagen integrada',
 		},
+		{
+			name: 'pill-paragraph',
+			label: 'Píldora',
+		}
 	] );
 
 	wp.blocks.registerBlockStyle( 'core/cover', [
@@ -93,6 +97,10 @@ wp.domReady( () => {
 		{
 			name: 'margin-vertical',
 			label: 'Margin vertical (top & bottom 80px)',
+		},
+		{
+			name: 'pill-paragraph',
+			label: 'Párrafos en píldora',
 		},
 	] );
 	
