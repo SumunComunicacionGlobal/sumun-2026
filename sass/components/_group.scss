@@ -70,3 +70,37 @@
         padding-bottom: var(--wp--custom--layout--gap);
     }
 }
+
+.wp-block-group.is-style-arrow-on-top {
+    transition: all 0.3s ease;
+
+    > *:first-child{
+        
+        &:before {
+            position: relative;
+            content: "";
+            display: block;
+            width: 56px;
+            height: 56px;
+            background-color: var(--wp--preset--color--neutral-60);
+            mask-image: url(./assets/icons/IconOutlineArrow.svg);
+            mask-size: contain;
+            mask-repeat: no-repeat;
+            mask-position: center;
+            transition: all 0.3s ease;
+            transform: rotate(45deg);
+            margin-bottom: var(--wp--preset--spacing--20);
+        }
+
+    }
+
+    &:hover {
+        background-color: var(--wp--preset--color--black) !important;
+
+        > *:first-child:before {
+            background-color: var(--wp--preset--color--secondary);
+            border-color: var(--wp--preset--color--secondary);
+            transform: rotate(90deg);
+        }
+    }
+}

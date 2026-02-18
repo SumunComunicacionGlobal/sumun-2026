@@ -97,6 +97,11 @@
 					"color": "#DEE2E6"
 				},
 				{
+					"name": "Neutral 60",
+					"slug": "neutral-60",
+					"color": "#6C757D"
+				},
+				{
 					"name": "Neutral 80",
 					"slug": "neutral-80",
 					"color": "#343a40"

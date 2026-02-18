@@ -102,6 +102,10 @@ wp.domReady( () => {
 			name: 'pill-paragraph',
 			label: 'Párrafos en píldora',
 		},
+		{
+			name: 'arrow-on-top',
+			label: 'Flecha encima',
+		},
 	] );
 	
 	wp.blocks.registerBlockVariation( 'core/group', [
