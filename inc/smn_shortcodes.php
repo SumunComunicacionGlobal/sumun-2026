@@ -11,6 +11,7 @@ function contenido_pagina($atts) {
 	extract( shortcode_atts(
 		array(
 			'id' => 0,
+			'wrapper' => true,
 		), $atts )
 	);
 	if ($id > 0) {
@@ -19,7 +20,16 @@ function contenido_pagina($atts) {
 		$content = $post->post_content;
 		$post_content_without_shortcodes = preg_replace ( '/\[google_map(.*?)\]/s' , '' , $content );
 
-		return do_shortcode( apply_filters( 'the_content', $post_content_without_shortcodes ) );
+		$r = '';
+		if ($wrapper) {
+			$r .= '<div class="contenido-pagina-wrapper">';
+		}
+			$r .= do_shortcode( apply_filters( 'the_content', $post_content_without_shortcodes ) );
+		if ($wrapper) {
+			$r .= '</div>';
+		}
+
+		return $r;
 	}
 }
 add_shortcode('contenido_pagina','contenido_pagina');

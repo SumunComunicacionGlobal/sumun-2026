@@ -158,3 +158,20 @@ document.addEventListener('DOMContentLoaded', (event) => {
         }
     });
 });
+// Mostrar .contenido-pagina-wrapper al marcar el checkbox de aceptación de Contact Form 7
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.wpcf7-acceptance input').forEach(function(checkbox) {
+        checkbox.addEventListener('change', function() {
+            if (checkbox.checked) {
+                const wpcf7Parent = checkbox.closest('.wpcf7');
+                if (wpcf7Parent) {
+                    const contenidoWrapper = wpcf7Parent.querySelector('.contenido-pagina-wrapper');
+                    if (contenidoWrapper) {
+                        contenidoWrapper.style.display = 'block';
+                    }
+                }
+            }
+            // No hacer nada al desactivar el checkbox
+        });
+    });
+});

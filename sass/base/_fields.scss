@@ -16,7 +16,6 @@ input[type="color"],
 textarea {
 	border-radius: 0;
 	border: 0;
-	color: var(--wp--preset--color--foreground);
 	background-color: transparent;
 	line-height: 1;
 	padding: 12px var(--wp--preset--spacing--10);
@@ -32,6 +31,7 @@ textarea {
 		color: inherit;
 		opacity: 1; /* Firefox */
 		font-style: italic;
+		font-size: var(--wp--preset--font-size--small);
 	}
 	  
 	&::-ms-input-placeholder { /* Edge 12 -18 */
@@ -52,9 +52,11 @@ textarea {
 
 button[type="submit"], input[type="submit"] {
 	background-color: var(--wp--preset--color--secondary);
+	border-color: var(--wp--preset--color--secondary);
 	border-radius: var(--wp--custom--border-radius--05);
 	padding: calc(0.667em + 2px) calc(1.333em + 2px);
 	color: var(--wp--preset--color--black);
+	font-weight: bold;
 	display: block;
 	width: 100%;
 
@@ -74,5 +76,14 @@ button[type="submit"], input[type="submit"] {
 		mask-size: cover;
 		mask-repeat: no-repeat;
 		transition: padding-left 0.3s ease;
+	}
+}
+
+.is-light {
+
+	button[type="submit"], input[type="submit"] {
+		background-color: var(--wp--preset--color--neutral-100);
+		border-color: var(--wp--preset--color--neutral-100);
+		color: var(--wp--preset--color--neutral-white);
 	}
 }

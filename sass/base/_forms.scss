@@ -9,3 +9,7 @@
 		flex: 0 0 calc( 50% - var(--wp--custom--layout--gap-small) / 2 );
 	}
 }
+
+.wpcf7 .contenido-pagina-wrapper {
+	display: none;
+}
