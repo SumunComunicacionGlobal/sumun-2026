@@ -63,6 +63,8 @@ a.stretched-link, .stretched-link > a {
     text-transform: uppercase;
 }
 
-.blur-background {
-    backdrop-filter: blur(8px);
+@media ($above-laptop) {
+    :where(:not(#masthead)) .blur-background {
+        backdrop-filter: blur(8px);
+    }
 }

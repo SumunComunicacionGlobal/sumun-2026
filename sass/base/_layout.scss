@@ -1,15 +1,38 @@
 @use '../abstracts/mixins' as *;
 
-@media ($above-tablet) {
-    body {
-        --wp--style--root--padding-right: 4rem;
-        --wp--style--root--padding-left: 4rem;
-    }  
+// Change default menu breakpoint to 1080px
+/*
+Source - https://stackoverflow.com/a/74963424
+Posted by Piiit
+Retrieved 2026-02-20, License - CC BY-SA 4.0
+*/
 
-    .wp-block-columns {
-        gap: var(--wp--custom--layout--gap-x-large);
+/* copy of wp default css to a 1000px media query */
+@media (min-width: 1080px) {
+    .wp-block-navigation__responsive-container-open:not(.always-shown) {
+        display: none !important;
+    }
+
+    .wp-block-navigation__responsive-container:not(.hidden-by-default):not(.is-menu-open) {
+        display: block !important;
+        width: 100%;
+        position: relative;
+        z-index: auto;
+        background-color: inherit;
     }
 }
+
+/* neutralize the wp default for 600px */
+@media (min-width: 600px) {
+    .wp-block-navigation__responsive-container-open:not(.always-shown) {
+        display: flex;
+    }
+    .wp-block-navigation__responsive-container:not(.hidden-by-default):not(.is-menu-open) {
+        display: none;
+    }
+}
+
+
 
 body .is-layout-flow {
 
@@ -32,18 +55,41 @@ body .is-layout-flow {
 }
 
 body {
+    --wp--style--root--padding-right: 1rem;
+    --wp--style--root--padding-left: 1rem;
+
 
     #masthead {
         position: fixed;
-        top: 1rem;
-        left: 1rem;
-        right: 1rem;
+        top: 0;
+        left: 0;
+        right: 0;
         z-index: 1000;
         transition: all 0.3s ease;
 
-        .wp-block-navigation__responsive-container:not(.is-menu-open.is-menu-open) {
-            background-color: transparent !important;
+        .wp-block-navigation__responsive-container {
+            
+            &:not(.is-menu-open.is-menu-open) {
+                background-color: transparent !important;
+            }
+
+            &.is-menu-open {
+                background-color: rgba(255, 255, 255, 0.8);
+                backdrop-filter: blur(10px);
+                padding: 0 var(--wp--custom--layout--gap) var(--wp--preset--spacing--10) !important;
+
+                top: calc( var(--wp--preset--spacing--30) + 56px + var(--wp--preset--spacing--20));
+                left: var(--wp--custom--layout--gap);
+                right: var(--wp--custom--layout--gap);
+                bottom: var(--wp--custom--layout--gap);
+                border-radius: var(--wp--custom--border-radius--1);
+
+                .wp-block-navigation__responsive-container-content .wp-block-navigation__container {
+                    align-items: center;
+                }
+            }
         }
+        
 
     }
 
@@ -57,4 +103,22 @@ body {
 .is-layout-constrained .wp-block-video video,
 .wp-block-group.has-background {
     border-radius: var(--wp--custom--border-radius--1)
+}
+
+@media ($above-tablet) {
+    body {
+        padding: 2rem;
+        --wp--style--root--padding-right: 4rem;
+        --wp--style--root--padding-left: 4rem;
+    
+        #masthead {
+            top: 1rem;
+            left: 1rem;
+            right: 1rem;
+        }
+    }  
+
+    .wp-block-columns {
+        gap: var(--wp--custom--layout--gap-x-large);
+    }
 }
