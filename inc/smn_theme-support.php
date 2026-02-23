@@ -103,7 +103,7 @@ function smn_hybrid_setup() {
 	function custom_excerpt_length( $length ) {
 		return 20; // Cambia este número al número de palabras que desees
 	}
-	add_filter( 'excerpt_length', 'custom_excerpt_length', 999 );
+	// add_filter( 'excerpt_length', 'custom_excerpt_length', 999 );
 }
 
 add_action( 'after_setup_theme', 'smn_hybrid_setup' );

@@ -156,3 +156,110 @@ function journal( $atts ) {
 
 }
 add_shortcode('journal', 'journal');
+
+function testimonios_shortcode( $atts ) {
+
+	// Enqueue custom script for modal and slick init
+	add_action( 'wp_footer', function() {
+		?>
+
+		<div id="testimonios-modal-bg" class="testimonios-modal-bg">
+			<div class="testimonios-modal">
+				<span class="testimonios-modal-close">&times;</span>
+				<div id="testimonios-modal-header"></div>
+				<div class="testimonio-quote-icon">
+					<?php echo file_get_contents( get_template_directory() . '/assets/icons/icono-comillas.svg' ); ?>
+				</div>
+				<div id="testimonios-modal-content"></div>
+			</div>
+		</div>
+
+		<script>
+		jQuery(document).ready(function($){
+			$('.testimonios-leer-btn').on('click', function(e){
+				e.preventDefault();
+				var content = $(this).closest('.testimonio-item').find('.testimonio-full-content').html();
+				var header = $(this).closest('.testimonio-item').find('.testimonio-header').html();
+				$('#testimonios-modal-header').html(header);
+				$('#testimonios-modal-content').html(content);
+				$('#testimonios-modal-bg').fadeIn(200);
+			});
+
+			$('.testimonios-modal-close, #testimonios-modal-bg').on('click', function(e){
+				if(e.target !== this) return;
+				$('#testimonios-modal-bg').fadeOut(200);
+			});
+		});
+		</script>
+		<?php
+	});
+
+	// Query 12 random testimonios
+	$args = array(
+		'post_type' => 'testimonio',
+		'posts_per_page' => 12,
+		'orderby' => 'rand'
+	);
+	$query = new WP_Query($args);
+
+	if ( !$query->have_posts() ) return '';
+
+	ob_start();
+	?>
+
+<div class="wp-block-cb-carousel testimonios-carousel"
+		data-slick = '{
+			"dots": true, 
+			"arrows": false, 
+			"autoplay": true, 
+			"autoplaySpeed": 5000, 
+			"adaptiveHeight": true, 
+			"slidesToShow": 3, 
+			"slidesToScroll": 1}'
+	 >
+		<?php while ( $query->have_posts() ) : $query->the_post(); ?>
+			<div class="wp-block-cb-slide testimonios-carousel-slide">
+
+				<div class="testimonio-item">
+					<div class="testimonio-quote-icon">
+						<?php echo file_get_contents( get_template_directory() . '/assets/icons/icono-comillas.svg' ); ?>
+					</div>
+					<div class="testimonio-excerpt"><?php the_excerpt(); ?></div>
+
+					<?php $modal_header = '<div class="testimonio-header">';
+						$modal_header .= '<div class="testimonio-meta">';
+							$modal_header .= '<div class="testimonio-thumb">';
+								if ( has_post_thumbnail() ) {
+									$modal_header .= get_the_post_thumbnail('thumbnail');
+								} else {
+									$modal_header .= '<img src="' . esc_url( get_avatar_url( get_the_author_meta('ID') ) ) . '" alt="" style="width:100%;height:100%;object-fit:cover;">';
+								}
+							$modal_header .= '</div>';
+							$modal_header .= '<div class="testimonio-info">';
+								$modal_header .= '<div class="testimonio-title">'. get_the_title() . '</div>';
+								$modal_header .= '<div class="testimonio-author">'. get_field( 'cargo' ) .'</div>';
+							$modal_header .= '</div>';
+						$modal_header .= '</div>';
+					$modal_header .= '</div>';
+
+					echo $modal_header;
+					?>
+
+					<div class="wp-block-buttons is-layout-flex">
+						<div class="wp-block-button is-style-outline-with-arrow">
+							<a href="#leer-opinion" class="wp-block-button__link has-secondary-color has-text-color has-link-color testimonios-leer-btn"><?php _e('Leer reseña completa', 'sumun'); ?></a>
+						</div>
+					</div>
+
+					<div class="testimonio-full-content" style="display:none;"><?php the_content(); ?></div>
+
+				</div>
+
+			</div>
+
+		<?php endwhile; wp_reset_postdata(); ?>
+	</div>
+	<?php
+	return ob_get_clean();
+}
+add_shortcode('testimonios', 'testimonios_shortcode');
