@@ -34,13 +34,16 @@
 }
 
 .testimonio-thumb {
-    width: 3rem;
-    height: 3rem;
     flex: 0 0 3rem;
     object-fit: cover;
-    border-radius: 50%;
-    overflow: hidden;
     margin-right: var(--wp--preset--spacing--10);
+
+    img {
+        width: 3rem;
+        height: 3rem;
+        object-fit: cover;
+        border-radius: 50%;
+    }
 }
 
 .testimonio-title {
