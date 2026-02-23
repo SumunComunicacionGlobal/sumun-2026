@@ -230,7 +230,7 @@ function testimonios_shortcode( $atts ) {
 						$modal_header .= '<div class="testimonio-meta">';
 							$modal_header .= '<div class="testimonio-thumb">';
 								if ( has_post_thumbnail() ) {
-									$modal_header .= get_the_post_thumbnail('thumbnail');
+									$modal_header .= get_the_post_thumbnail( get_the_ID(), 'thumbnail' );
 								} else {
 									$modal_header .= '<img src="' . esc_url( get_avatar_url( get_the_author_meta('ID') ) ) . '" alt="" style="width:100%;height:100%;object-fit:cover;">';
 								}
