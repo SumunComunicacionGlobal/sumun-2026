@@ -215,7 +215,22 @@ function testimonios_shortcode( $atts ) {
 			"autoplaySpeed": 5000, 
 			"adaptiveHeight": true, 
 			"slidesToShow": 3, 
-			"slidesToScroll": 1}'
+			"slidesToScroll": 1,
+			"responsive": [
+				{
+					"breakpoint": 1024,
+					"settings": {
+						"slidesToShow": 2
+					}
+				},
+				{
+					"breakpoint": 600,
+					"settings": {
+						"slidesToShow": 1
+					}
+				}
+			]
+		}'
 	 >
 		<?php while ( $query->have_posts() ) : $query->the_post(); ?>
 			<div class="wp-block-cb-slide testimonios-carousel-slide">
