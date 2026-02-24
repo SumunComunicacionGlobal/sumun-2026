@@ -111,6 +111,10 @@ body {
 
     &.scrolled #masthead {
 
+        > .wp-block-group > .wp-block-group > .wp-block-group {
+            // background-color: rgba(0,0,0,.5);
+        }
+
     }
 
 }
@@ -137,4 +141,25 @@ body {
     .wp-block-columns {
         gap: var(--wp--custom--layout--gap-x-large);
     }
+}
+
+#colophon {
+
+    @media ($below-tablet) {
+        text-align: center;
+
+        .is-content-justification-space-between,
+        .is-layout-flex {
+            justify-content: center;
+        }
+        .has-text-align-right {
+            text-align: center;
+        }
+        .wp-block-navigation {
+            align-items: center;
+            justify-content: center;
+        }
+        
+    }
+
 }
