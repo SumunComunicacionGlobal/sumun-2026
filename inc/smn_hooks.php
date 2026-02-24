@@ -44,7 +44,7 @@ function cmplz_show_banner_on_click() {
                 }
             });
         }
-        addEvent('click', 'a.cmplz-show-banner, .menu-item.cmplz-show-banner > a', function(){
+        addEvent('click', 'a.cmplz-show-banner, li.cmplz-show-banner > a', function(){
             event.preventDefault();
             document.querySelectorAll('.cmplz-manage-consent').forEach(obj => {
                 obj.click();
