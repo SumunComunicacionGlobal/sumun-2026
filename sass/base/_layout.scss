@@ -90,6 +90,22 @@ body {
             }
         }
         
+        @media ($below-tablet) {
+            .wp-block-button__link {
+                text-indent: -9999px;
+                gap: 0;
+            }
+
+            .wp-block-group > .wp-block-group > .wp-block-group {
+                padding-left: 1rem;
+                padding-right: 1rem;
+
+                &:first-child {
+                    padding-left: .5rem;
+                    padding-right: .5rem;
+                }
+            }
+        }
 
     }
 
