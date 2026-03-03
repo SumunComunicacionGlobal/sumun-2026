@@ -119,6 +119,17 @@ body {
 
 }
 
+.entry-header {
+    background-color: var(--wp--preset--color--neutral-90);
+    padding: var(--wp--preset--spacing--80) var(--wp--custom--layout--gap) var(--wp--preset--spacing--20);
+    border-radius: var(--wp--custom--border-radius--1);
+    margin-bottom: var(--wp--custom--layout--gap);
+
+    .entry-title {
+        margin: var(--wp--preset--spacing--10) 0;
+    }
+}
+
 .is-layout-constrained .wp-block-cover,
 .is-layout-constrained .wp-block-video video,
 .wp-block-group.has-background {

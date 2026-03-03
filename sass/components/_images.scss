@@ -1,3 +1,9 @@
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
 .img-white img,
 img.img-white {
     filter: brightness(0) invert(1);

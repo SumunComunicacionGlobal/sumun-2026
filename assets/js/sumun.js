@@ -175,3 +175,34 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+
+jQuery(document).ready(function($) {
+    $('.wp-block-group.is-style-carousel').addClass('wp-block-cb-carousel').removeClass('is-layout-grid').slick({
+        dots: true,
+        arrows: false,
+        infinite: false,
+        slidesToShow: 4,
+        slidesToScroll: 1,
+        adaptiveHeight: true,
+        responsive: [
+            {
+                breakpoint: 1240,
+                settings: {
+                    slidesToShow: 3,
+                }
+            },
+            {
+                breakpoint: 768,
+                settings: {
+                    slidesToShow: 2,
+                }
+            },
+            {
+                breakpoint: 480,
+                settings: {
+                    slidesToShow: 1,
+                }
+            }
+        ]
+    });
+});

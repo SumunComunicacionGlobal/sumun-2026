@@ -106,6 +106,10 @@ wp.domReady( () => {
 			name: 'arrow-on-top',
 			label: 'Flecha encima',
 		},
+		{
+			name: 'carousel',
+			label: 'Carrusel',
+		}
 	] );
 	
 	wp.blocks.registerBlockVariation( 'core/group', [

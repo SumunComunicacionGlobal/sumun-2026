@@ -19,7 +19,24 @@ a.stretched-link, .stretched-link > a {
 .column-reverse-mobile {
     @media ($below-tablet) {
         flex-direction: column-reverse;
-        display: flex;
+    }
+}
+
+.column-reverse-desktop {
+    @media ($above-tablet) {
+        flex-direction: column-reverse;
+    }
+}
+
+.row-reverse-mobile {
+    @media ($below-tablet) {
+        flex-direction: row-reverse;
+    }
+}
+
+.row-reverse-desktop {
+    @media ($above-tablet) {
+        flex-direction: row-reverse;
     }
 }
 

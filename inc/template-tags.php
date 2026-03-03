@@ -163,3 +163,87 @@ if ( ! function_exists( 'wp_body_open' ) ) :
 		do_action( 'wp_body_open' );
 	}
 endif;
+
+
+function smn_hybrid_get_portfolio_gallery() {
+	$html_fotos = '';
+
+	$galeria_de_imagenes = apply_filters( 'the_content', get_field('galeria_de_imagenes') );
+	if ( ! empty( $galeria_de_imagenes ) ) {
+		$html_fotos .= $galeria_de_imagenes;
+	}
+
+	$galeria_de_videos = get_field('galeria_de_videos');
+	if ( ! empty( $galeria_de_videos ) ) {
+		$videos = explode( "\n", $galeria_de_videos );
+		foreach ( $videos as $video_url ) {
+			$video_url = trim( $video_url );
+			if ( ! empty( $video_url ) ) {
+				$html_fotos .= do_shortcode( '[video src="' . esc_url( $video_url ) . ']' );
+			}
+		}
+	}
+
+	if ( $html_fotos ) {
+		$html_fotos = '<div class="portfolio-gallery">' . $html_fotos . '</div>';
+	}
+
+	return $html_fotos;
+}
+
+add_filter( 'post_gallery', 'modificar_shortcode_gallery', 10, 3  );
+function modificar_shortcode_gallery( $output, $attr, $instance ) {
+    if ( is_singular( 'portfolio_page' )) {
+        $attr['columns'] = 1;
+        $attr['size'] = 'large';
+        $attr['link'] = 'none';
+
+        remove_filter( 'post_gallery', 'modificar_shortcode_gallery', 10 );
+        return gallery_shortcode( $attr );
+    }
+
+  
+    return $output;
+}
+
+function smn_get_breadcrumb() {
+
+	if ( is_front_page() ) return false;
+
+	ob_start();
+
+	if ( function_exists('yoast_breadcrumb') ) {
+		yoast_breadcrumb( '<div id="breadcrumbs" class="breadcrumb"><div class="breadcrumb-inner">','</div></div>' );
+	} elseif(function_exists('bcn_display')) {
+		echo '<div class="breadcrumb" typeof="BreadcrumbList" vocab="https://schema.org/">';
+			echo '<div class="breadcrumb-inner">';
+				bcn_display();
+			echo '</div>';
+		echo '</div>';
+	} elseif ( function_exists( 'rank_math_the_breadcrumbs') ) {
+		echo '<div class="breadcrumb">';
+			echo '<div class="breadcrumb-inner">';
+				rank_math_the_breadcrumbs(); 
+			echo '</div>';
+		echo '</div>';
+	}
+
+	$r = ob_get_clean();
+
+	if ( $r ) {
+		return '<div class="breadcrumb-wrapper py-1">' . $r . '</div>';
+	}
+
+}
+
+function smn_breadcrumb() {
+	
+	$r = smn_get_breadcrumb();
+
+	if ( $r ) {
+		echo '<div class="container">';
+			echo $r;
+		echo '</div>';
+	}
+
+}
