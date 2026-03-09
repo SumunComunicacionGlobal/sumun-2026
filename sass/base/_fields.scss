@@ -28,9 +28,8 @@ textarea {
 	}
 
 	&::placeholder {
-		color: inherit;
+		color: var(--wp--preset--color--text-medium);
 		opacity: 1; /* Firefox */
-		font-style: italic;
 		font-size: var(--wp--preset--font-size--small);
 	}
 	  
@@ -41,9 +40,13 @@ textarea {
 }
 
 select {
-	border-radius: var(--wp--custom--border-radius--rounded);
+	// border-radius: 4px;
 	border: 2px solid;
 	padding: 7px var(--wp--preset--spacing--10);
+	background-color: transparent;
+	border-top-color: transparent;
+	border-left-color: transparent;
+	border-right-color: transparent;
 }
 
 textarea {

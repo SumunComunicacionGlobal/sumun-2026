@@ -66,6 +66,9 @@ body {
         right: 0;
         z-index: 1000;
         transition: all 0.3s ease;
+        background: linear-gradient(180deg, var(--wp--preset--color--neutral-100) 0, transparent 136px, transparent 272px);
+        background-size: 1px 272px;
+        background-position: 0 -120px;
 
         .wp-block-navigation__responsive-container {
             
@@ -110,7 +113,8 @@ body {
     }
 
     &.scrolled #masthead {
-
+        background-position: 0px 0px;
+        
         > .wp-block-group > .wp-block-group > .wp-block-group {
             // background-color: rgba(0,0,0,.5);
         }
@@ -143,9 +147,14 @@ body {
         --wp--style--root--padding-left: 4rem;
     
         #masthead {
-            top: 1rem;
-            left: 1rem;
-            right: 1rem;
+            // top: 1rem;
+            // left: 1rem;
+            // right: 1rem;
+            padding: 1rem;
+        }
+
+        &.scrolled #masthead {
+            padding-top: 0;
         }
     }  
 

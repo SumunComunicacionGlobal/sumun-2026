@@ -5,8 +5,10 @@
 
  function smn_scripts() {
 
+	$theme_version = wp_get_theme()->get( 'Version' );
+
 	wp_enqueue_script( 'jquery' );
-	wp_enqueue_script( 'sumun-js', get_template_directory_uri() . '/assets/js/sumun.js', array(), true );
+	wp_enqueue_script( 'sumun-js', get_template_directory_uri() . '/assets/js/sumun.js', array(), $theme_version, true );
 	wp_enqueue_script( 'smnsumun-navigation', get_template_directory_uri() . '/assets/js/navigation.js', array(), _S_VERSION, true );
 
 	// No se carga si el carrusel está en un bloque sincronizado

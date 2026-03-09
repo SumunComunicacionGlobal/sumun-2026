@@ -8,6 +8,10 @@
     font-weight: bold;
 }
 
+.has-medium-font-size {
+    line-height: var(--wp--custom--line-height--headings);
+}
+
 .has-display-font-size,
 .has-heading-1-font-size {
     line-height: var(--wp--custom--line-height--tiny) !important;

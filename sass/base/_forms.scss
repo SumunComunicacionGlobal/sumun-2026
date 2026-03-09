@@ -1,3 +1,5 @@
+@use '../abstracts/mixins' as *;
+
 .wpcf7-acceptance .wpcf7-list-item {
 	margin: 0;
 }
@@ -8,6 +10,17 @@
 	> * {
 		flex: 0 0 calc( 50% - var(--wp--custom--layout--gap-small) / 2 );
 	}
+
+	@media ($below-mobile) {
+		flex-direction: column;
+
+		> *,
+		select {
+			flex: 0 0 100%;
+			width: 100%;
+		}
+	}
+
 }
 
 .wpcf7 .contenido-pagina-wrapper {

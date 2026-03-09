@@ -105,15 +105,25 @@ document.addEventListener('DOMContentLoaded', (event) => {
 });
 
 // Navegación suave para enlaces a anclas
+// Navegación suave para enlaces a anclas con offset para barra fija
 document.addEventListener('DOMContentLoaded', (event) => {
     const anchorLinks = document.querySelectorAll('a[href^="#"]');
+    const offset = 120; // px
     anchorLinks.forEach(link => {
         link.addEventListener('click', (e) => {
+            const href = link.getAttribute('href');
+            // Ignora enlaces vacíos o solo "#"
+            if (!href || href === '#') return;
             e.preventDefault();
-            const targetId = link.getAttribute('href').substring(1);
+            const targetId = href.substring(1);
             const targetElement = document.getElementById(targetId);
             if (targetElement) {
-                targetElement.scrollIntoView({ behavior: 'smooth' });
+                const elementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
+                const offsetPosition = elementPosition - offset;
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: 'smooth'
+                });
             }
         });
     });
