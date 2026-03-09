@@ -303,7 +303,7 @@
 						"typography": {
 							"fontFamily": "var(--wp--preset--font-family--font-quote)",
 							"fontSize": "var(--wp--preset--font-size--heading-2)",
-							"lineHeight": "var(--wp--custom--line-height--heading)",
+							"lineHeight": "var(--wp--custom--line-height--headings)",
 							"fontStyle": "italic"
 						},
 						"spacing": {
